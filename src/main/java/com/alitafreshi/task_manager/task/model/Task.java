@@ -1,5 +1,6 @@
 package com.alitafreshi.task_manager.task.model;
 
+import com.alitafreshi.task_manager.comment.model.Comment;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;

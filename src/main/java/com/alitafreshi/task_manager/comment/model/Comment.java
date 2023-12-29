@@ -1,4 +1,4 @@
-package com.alitafreshi.task_manager.task.model;
+package com.alitafreshi.task_manager.comment.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
