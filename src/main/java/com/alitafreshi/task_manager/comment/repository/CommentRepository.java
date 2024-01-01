@@ -1,8 +1,12 @@
 package com.alitafreshi.task_manager.comment.repository;
 
+import com.alitafreshi.task_manager.comment.model.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
-public interface CommentRepository extends JpaRepository {
+public interface CommentRepository extends JpaRepository<Comment, Long> {
+    List<Comment> findByTaskId(Long taskId);
 }
