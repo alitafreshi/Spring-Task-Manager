@@ -1,6 +1,7 @@
 package com.alitafreshi.task_manager.task.model;
 
 import com.alitafreshi.task_manager.comment.model.Comment;
+import com.alitafreshi.task_manager.user.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -24,8 +25,7 @@ public class Task {
     @Column(name = "task_description", nullable = false, columnDefinition = "TEXT")
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
+    @Column(name = "user_id")
     private Integer userId;
 
     @Enumerated(EnumType.STRING)
@@ -47,4 +47,8 @@ public class Task {
     @OneToMany
     @JoinColumn(name = "task_id")
     private Set<Comment> commentList;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
+    private User user;
 }
