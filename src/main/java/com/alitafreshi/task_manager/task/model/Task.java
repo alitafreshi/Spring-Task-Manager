@@ -3,6 +3,7 @@ package com.alitafreshi.task_manager.task.model;
 import com.alitafreshi.task_manager.comment.model.Comment;
 import com.alitafreshi.task_manager.user.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -45,10 +46,11 @@ public class Task {
 
     @JsonIgnore
     @OneToMany
-    @JoinColumn(name = "task_id")
+    @JoinColumn(name = "comment_id")
     private Set<Comment> commentList;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
+    @JsonIgnoreProperties("taskList")
     private User user;
 }

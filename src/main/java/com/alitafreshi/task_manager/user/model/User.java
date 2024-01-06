@@ -26,8 +26,6 @@ public class User {
     @Column(name = "user_role", nullable = false)
     private UserRole role;
 
-    @JsonIgnore
-    @OneToMany
-    @JoinColumn(name = "user_id")
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE}, orphanRemoval = true)
     private Set<Task> taskList;
 }

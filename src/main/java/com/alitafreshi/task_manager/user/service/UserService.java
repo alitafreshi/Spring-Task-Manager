@@ -13,16 +13,16 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void insertNewUser(User newUser) {
-        userRepository.save(newUser);
+    public User insertNewUser(User newUser) {
+        return userRepository.save(newUser);
     }
 
-    public void deleteUser(User user) {
-        userRepository.delete(user);
+    public Long deleteUser(String phoneNumber) {
+        return userRepository.deleteByPhoneNumber(phoneNumber);
     }
 
-    public void findUserByPhoneNumber(String phoneNumber){
-       userRepository.findUserByPhoneNumber(phoneNumber);
+    public User findUserByPhoneNumber(String phoneNumber) {
+        return userRepository.findUserByPhoneNumber(phoneNumber);
     }
 
 }
