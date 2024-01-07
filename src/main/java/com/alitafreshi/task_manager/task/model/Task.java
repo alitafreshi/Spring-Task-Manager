@@ -2,14 +2,13 @@ package com.alitafreshi.task_manager.task.model;
 
 import com.alitafreshi.task_manager.comment.model.Comment;
 import com.alitafreshi.task_manager.user.model.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
 
 @Table(name = "tbl_tasks")
 @Entity
@@ -44,13 +43,11 @@ public class Task {
     @Column(name = "task_dead_line", nullable = false, columnDefinition = "TEXT")
     private LocalDateTime deadLine;
 
-    @JsonIgnore
-    @OneToMany
-    @JoinColumn(name = "comment_id")
-    private Set<Comment> commentList;
+    @OneToMany(mappedBy = "task", cascade = {CascadeType.REMOVE}, orphanRemoval = true)
+    private List<Comment> commentList;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id",insertable = false, updatable = false)
     @JsonIgnoreProperties("taskList")
     private User user;
 }

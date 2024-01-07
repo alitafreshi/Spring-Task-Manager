@@ -1,11 +1,10 @@
 package com.alitafreshi.task_manager.user.model;
 
 import com.alitafreshi.task_manager.task.model.Task;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Set;
+import java.util.List;
 
 @Table(name = "tbl_user", uniqueConstraints = {
         @UniqueConstraint(name = "user_id_unique", columnNames = "user_id"),
@@ -27,5 +26,5 @@ public class User {
     private UserRole role;
 
     @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE}, orphanRemoval = true)
-    private Set<Task> taskList;
+    private List<Task> taskList;
 }

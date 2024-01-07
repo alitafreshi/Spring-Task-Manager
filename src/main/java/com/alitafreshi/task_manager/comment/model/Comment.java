@@ -1,6 +1,7 @@
 package com.alitafreshi.task_manager.comment.model;
 
 import com.alitafreshi.task_manager.task.model.Task;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,5 +19,6 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "task_id", referencedColumnName = "task_id", nullable = false)
+    @JsonIgnoreProperties("commentList")
     private Task task;
 }

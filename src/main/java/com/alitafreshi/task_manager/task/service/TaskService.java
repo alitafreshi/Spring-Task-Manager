@@ -5,6 +5,7 @@ import com.alitafreshi.task_manager.task.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class TaskService {
@@ -15,15 +16,17 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
-    public void insertNewTask(Task newTask){
-        taskRepository.save(newTask);
+    public Task insertNewTask(Task newTask){
+        return taskRepository.save(newTask);
     }
 
     public List<Task> getAllTaskListByUserId(Long userId){
         return taskRepository.findByUserId(userId);
     }
-    public void deletedByTaskId(Long taskId){
+    public String deletedByTaskId(Long taskId){
+        taskRepository.findById(taskId).orElseThrow(() -> new NoSuchElementException("Task not found with ID: " + taskId));
         taskRepository.deleteById(taskId);
+        return "Task With ID" + " " + taskId + " " + "Deleted";
     }
 
 }
