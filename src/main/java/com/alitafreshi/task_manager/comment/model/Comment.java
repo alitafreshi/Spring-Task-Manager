@@ -17,8 +17,11 @@ public class Comment {
     @Column(name = "comment_description", nullable = false, columnDefinition = "TEXT")
     private String description;
 
+    @Column(name = "task_id")
+    private Integer taskId;
+
     @ManyToOne
-    @JoinColumn(name = "task_id", referencedColumnName = "task_id", nullable = false)
+    @JoinColumn(name = "task_id", referencedColumnName = "task_id", nullable = false, insertable = false, updatable = false)
     @JsonIgnoreProperties("commentList")
     private Task task;
 }

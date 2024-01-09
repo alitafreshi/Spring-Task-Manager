@@ -14,8 +14,8 @@ public class CommentService {
         this.commentRepository = commentRepository;
     }
 
-    public void insertNewCommentByTaskId(Comment newComment) {
-        commentRepository.save(newComment);
+    public Comment insertNewCommentByTaskId(Comment newComment) {
+        return commentRepository.save(newComment);
     }
 
     public List<Comment> getAllCommentsByTaskId(Long taskId){

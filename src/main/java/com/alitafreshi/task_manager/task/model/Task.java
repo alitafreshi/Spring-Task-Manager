@@ -47,7 +47,7 @@ public class Task {
     private List<Comment> commentList;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id",insertable = false, updatable = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
     @JsonIgnoreProperties("taskList")
     private User user;
 }
