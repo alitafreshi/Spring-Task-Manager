@@ -20,19 +20,19 @@ public class TaskController {
     }
 
     @PostMapping("/newTask")
-    @Operation(summary = "insert new note into database")
+    @Operation(summary = "insert new task into database")
     public Task insertNewTask(@RequestBody Task newTask) {
         return taskService.insertNewTask(newTask);
     }
 
     @GetMapping("/taskList/{userId}")
-    @Operation(summary = "get all related notes for specific user by userId")
+    @Operation(summary = "get all related tasks for specific user by userId")
     public List<Task> getAllTasksByUserId(@PathVariable("userId") Long userId) {
         return taskService.getAllTaskListByUserId(userId);
     }
 
     @DeleteMapping("/deleteTask/{taskId}")
-    @Operation(summary = "delete note from database")
+    @Operation(summary = "delete task from database")
     public String removeTaskById(@PathVariable("taskId") Long taskId){
         return taskService.deletedByTaskId(taskId);
     }
